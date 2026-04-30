@@ -156,7 +156,8 @@ class RadiativeTransferEngine:
                 coupling="",
             )
             self.lut_grid = lut_grid or luts.extractGrid(self.lut)
-            self.points = luts.extractPoints(self.lut)
+            self.points = common.combos(self.lut_grid.values())
+            # self.points = luts.extractPoints(self.lut)
             self.lut_names = list(self.lut_grid.keys())
             Logger.info(f"LUT grid loaded from file")
             Logger.debug(f"{self.lut_grid}")
@@ -297,6 +298,7 @@ class RadiativeTransferEngine:
         self.indices = SimpleNamespace(geom={}, x_RT=[])
 
         # Attach interpolators
+        build_interpolators = False
         if build_interpolators:
             self.build_interpolators()
 
