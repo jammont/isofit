@@ -298,9 +298,9 @@ class RadiativeTransferEngine:
         self.indices = SimpleNamespace(geom={}, x_RT=[])
 
         # Attach interpolators
-        build_interpolators = False
         if build_interpolators:
-            self.build_interpolators()
+            # TODO: Global LUT too large to build interpolators, just perma off for now
+            # self.build_interpolators()
 
             geometry_keys = set(engine_config.statevector_names or self.lut_names)
 
